@@ -1,0 +1,28 @@
+scratch*
+
+# Data, database
+*.csv
+*.sqlite
+data/
+
+# IDE settings
+*.code-workspace
+.history
+.idea
+.vscode/
+
+# Jupyter checkpoints, converted notebooks
+*.html
+.ipynb_checkpoints
+
+# Mlflow data
+mlruns/
+
+# Python bytecode
+__pycache__/
+
+# Ruff linter cache
+.ruff_cache
+
+# Virtual environment
+.venv/
