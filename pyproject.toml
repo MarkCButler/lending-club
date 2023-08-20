@@ -29,6 +29,15 @@ nbstripout = "^0.6.1"
 mlflow = "^2.5.0"
 pydocstyle = {extras = ["toml"], version = "^6.3.0"}
 
+[tool.pylint."messages control"]
+disable = ["fixme"]
+
+[tool.pydocstyle]
+convention = "google"
+
+[tool.ruff]
+select = ["E", "F", "I", "ARG", "RUF", "PL"]
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
