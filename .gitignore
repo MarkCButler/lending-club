@@ -5,6 +5,9 @@ scratch*
 *.sqlite
 data/
 
+# Documentation generated for the repo
+/site/
+
 # IDE settings
 *.code-workspace
 .history
@@ -14,6 +17,7 @@ data/
 # Jupyter checkpoints, converted notebooks
 *.html
 .ipynb_checkpoints
+html/
 
 # Mlflow data
 mlruns/
