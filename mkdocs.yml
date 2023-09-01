@@ -1,0 +1,25 @@
+site_name: ''
+docs_dir: pages
+
+theme:
+  name: material
+  palette:
+    scheme: slate
+  icon:
+    logo: fontawesome/brands/github
+  features:
+    - toc.integrate
+    - navigation.top
+
+extra:
+  homepage: https://github.com/MarkCButler/lending-club
+
+markdown_extensions:
+  - attr_list
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+
+plugins:
+  - search
+  - git-revision-date-localized
