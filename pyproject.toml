@@ -31,6 +31,9 @@ nbstripout = "^0.6.1"
 mlflow = "^2.5.0"
 pydocstyle = {extras = ["toml"], version = "^6.3.0"}
 
+[tool.pylint.basic]
+good-names = ["i", "j", "k", "ex", "Run", "_", "df"]
+
 [tool.pylint."messages control"]
 disable = ["fixme"]
 
@@ -38,7 +41,7 @@ disable = ["fixme"]
 convention = "google"
 
 [tool.ruff]
-select = ["E", "F", "I", "ARG", "RUF", "PL"]
+select = ["E", "F", "I", "ARG", "RUF"]
 
 [build-system]
 requires = ["poetry-core"]
