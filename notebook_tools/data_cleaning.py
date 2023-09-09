@@ -49,7 +49,7 @@ def load_acc_loan_data():
         Dataframe containing the table of accepted loans
     """
     metadata = _load_acc_loan_metadata()
-    dtypes = metadata["dtype alias"].to_dict()
+    dtypes = metadata["data type"].to_dict()
 
     # Load the raw data.
     loan_data = pd.read_csv(
@@ -75,9 +75,7 @@ def load_acc_loan_feat_desc():
 
 def _load_acc_loan_metadata():
     metadata = pd.read_csv(ACC_LOANS_METADATA_PATH)
-    return metadata.set_index("LoanStatNew").rename(
-        columns={"Description": "description"}
-    )
+    return metadata.set_index("column name")
 
 
 def load_rej_loan_data():
