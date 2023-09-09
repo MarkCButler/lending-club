@@ -1,7 +1,7 @@
 # Analysis and machine learning: LendingClub
 
 The work is presented in a series of Jupyter notebooks that have been converted to HTML.
-Links to these notebooks are labelled below with the Jupyter icon :simple-jupyter:.
+Links to these notebooks are labelled below with the Jupyter icon :jupyter-colored:.
 
 ## Exploratory Data Analysis
 
@@ -21,10 +21,10 @@ includes data on accepted and rejected loans from 2007 through 2018 Q2.
         poetry run mkdocs gh-deploy --no-history --strict
 -->
 
-### [:simple-jupyter: Define data types, reformat data, and create the database](html/1-initial-data-cleaning.html)
+### [:jupyter-colored: Define data types, reformat data, and create the database](html/1-initial-data-cleaning.html)
 
 - After preliminary exploration of the data, define a data type for each feature.
 - Convert / reformat some columns to facilitate model development.
 - Create a SQLite database.
 
-### :simple-jupyter: Explore features
+### :jupyter-colored: Explore features

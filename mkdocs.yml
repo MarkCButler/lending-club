@@ -10,6 +10,7 @@ theme:
   features:
     - toc.integrate
     - navigation.top
+  custom_dir: pages/overrides
 
 extra:
   homepage: https://github.com/MarkCButler/lending-club
@@ -19,6 +20,9 @@ markdown_extensions:
   - pymdownx.emoji:
       emoji_index: !!python/name:materialx.emoji.twemoji
       emoji_generator: !!python/name:materialx.emoji.to_svg
+      options:
+        custom_icons:
+          - pages/overrides/.icons
 
 plugins:
   - search
