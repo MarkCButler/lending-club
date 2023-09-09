@@ -10,7 +10,7 @@ includes data on accepted and rejected loans from 2007 through 2018 Q2.
 
 <!--
     In this document, relative links to html files such as
-        html/1-initial-data-cleaning.html
+        html/data-cleaning-01.html
     point to Jupyter notebooks that have been converted to html.  The html directory
     containing these converted notebooks is ignored by git in the main branch (due
     to the .gitignore file).  However, this directory is not ignored by the static
@@ -21,7 +21,7 @@ includes data on accepted and rejected loans from 2007 through 2018 Q2.
         poetry run mkdocs gh-deploy --no-history --strict
 -->
 
-### [:jupyter-colored: Define data types, reformat data, and create the database](html/1-initial-data-cleaning.html)
+### [:jupyter-colored: Define data types, reformat data, and create the database](html/data-cleaning-01.html)
 
 - After preliminary exploration of the data, define a data type for each feature.
 - Convert / reformat some columns to facilitate model development.

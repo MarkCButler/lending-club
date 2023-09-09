@@ -42,8 +42,8 @@ REJ_LOANS_DTYPES = {
 def load_acc_loan_data():
     """Load the table of accepted loans from a file of raw data.
 
-    This function executes the data-cleaning steps developed in
-    ../notebooks/1-initial-data-cleaning.ipynb.
+    This function also executes data-cleaning steps developed in
+    notebooks in the current project.
 
     Returns:
         Dataframe containing the table of accepted loans
@@ -83,8 +83,8 @@ def _load_acc_loan_metadata():
 def load_rej_loan_data():
     """Load the table of rejected loans from a file of raw data.
 
-    This function executes the data-cleaning steps developed in
-    ../notebooks/1-initial-data-cleaning.ipynb.
+    This function also executes data-cleaning steps developed in
+    notebooks in the current project.
 
     Returns:
         Dataframe containing the table of rejected loans
