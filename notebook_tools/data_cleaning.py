@@ -9,8 +9,11 @@ ACC_LOANS_PATH = DATA_DIR / "accepted_2007_to_2018Q4.csv"
 REJ_LOANS_PATH = DATA_DIR / "rejected_2007_to_2018Q4.csv"
 ACC_LOANS_METADATA_PATH = DATA_DIR / "LCDataDictionaryWithDtypes.csv"
 
+# Names of columns to exclude in loading the data
+ACC_LOANS_EXCLUDED_COLUMNS = ("member_id", "url", "title", "desc", "policy_code")
+
 # Names of columns in the raw data to convert from strings.
-ACC_LOANS_DATE_COLUMNS = [
+ACC_LOANS_DATE_COLUMNS = (
     "issue_d",
     "earliest_cr_line",
     "last_pymnt_d",
@@ -22,8 +25,8 @@ ACC_LOANS_DATE_COLUMNS = [
     "payment_plan_start_date",
     "debt_settlement_flag_date",
     "settlement_date",
-]
-ACC_LOANS_BOOLEAN_COLUMNS = ["pymnt_plan", "hardship_flag", "debt_settlement_flag"]
+)
+ACC_LOANS_BOOLEAN_COLUMNS = ("pymnt_plan", "hardship_flag", "debt_settlement_flag")
 
 # The data types to use in loading the table of rejected loans.
 REJ_LOANS_DTYPES = {
@@ -39,7 +42,7 @@ REJ_LOANS_DTYPES = {
 }
 
 
-def load_acc_loan_data():
+def load_acc_loan_data(excluded_cols=ACC_LOANS_EXCLUDED_COLUMNS):
     """Load the table of accepted loans from a file of raw data.
 
     This function also executes data-cleaning steps developed in
@@ -55,7 +58,7 @@ def load_acc_loan_data():
     loan_data = pd.read_csv(
         ACC_LOANS_PATH,
         dtype=dtypes,
-        usecols=lambda col_name: col_name != "member_id",
+        usecols=lambda col_name: col_name not in excluded_cols,
     )
 
     # Perform data conversions.
