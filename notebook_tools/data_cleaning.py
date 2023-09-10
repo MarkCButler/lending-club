@@ -12,6 +12,10 @@ ACC_LOANS_METADATA_PATH = DATA_DIR / "LCDataDictionaryWithDtypes.csv"
 # Names of columns to exclude in loading the data
 ACC_LOANS_EXCLUDED_COLUMNS = ("member_id", "url", "title", "desc", "policy_code")
 
+# Identifiers for data-conversion steps
+ACC_LOANS_CONVERSIONS = ("time_intervals", "dates", "booleans")
+REJ_LOANS_CONVERSIONS = ("percentages",)
+
 # Names of columns in the raw data to convert from strings.
 ACC_LOANS_DATE_COLUMNS = (
     "issue_d",
@@ -54,15 +58,11 @@ def load_acc_loan_data(excluded_cols=ACC_LOANS_EXCLUDED_COLUMNS):
     metadata = _load_acc_loan_metadata()
     dtypes = metadata["data type"].to_dict()
 
-    # Load the raw data.
-    loan_data = pd.read_csv(
+    return pd.read_csv(
         ACC_LOANS_PATH,
         dtype=dtypes,
         usecols=lambda col_name: col_name not in excluded_cols,
     )
-
-    # Perform data conversions.
-    return convert_acc_loan_data(loan_data)
 
 
 def load_acc_loan_feat_desc():
@@ -90,52 +90,57 @@ def load_rej_loan_data():
     Returns:
         Dataframe containing the table of rejected loans
     """
-    loan_data = pd.read_csv(REJ_LOANS_PATH, dtype=REJ_LOANS_DTYPES)
-    return convert_rej_loan_data(loan_data)
+    return pd.read_csv(REJ_LOANS_PATH, dtype=REJ_LOANS_DTYPES)
 
 
-def convert_acc_loan_data(loan_data):
+def convert_acc_loan_data(data, conversions=ACC_LOANS_CONVERSIONS):
     """Perform data conversion on selected columns in the table of accepted loans.
 
     Args:
-        loan_data:  Dataframe containing table of accepted loans
+        data:  Dataframe containing table of accepted loans
+        conversions:  Tuple of strings specifying data-conversion steps to execute
 
     Returns:
         Dataframe with converted columns containing the table of accepted loans
     """
-    loan_data["term"] = (
-        loan_data["term"].str.replace("months", "").str.strip().astype("Int64")
-    )
-    for col_name in ACC_LOANS_DATE_COLUMNS:
-        loan_data[col_name] = (
-            loan_data[col_name]
-            .map(_get_iso_date_string, na_action="ignore")
-            .astype("string")
+    if "time_intervals" in conversions:
+        data["term"] = (
+            data["term"].str.replace("months", "").str.strip().astype("Int64")
         )
-    mapper = {"N": False, "Y": True}
-    for col_name in ACC_LOANS_BOOLEAN_COLUMNS:
-        loan_data[col_name] = (
-            loan_data[col_name]
-            .str.upper()
-            .map(mapper, na_action="ignore")
-            .astype("boolean")
-        )
-    return loan_data
+    if "dates" in conversions:
+        for col_name in ACC_LOANS_DATE_COLUMNS:
+            data[col_name] = (
+                data[col_name]
+                .map(_get_iso_date_string, na_action="ignore")
+                .astype("string")
+            )
+    if "booleans" in conversions:
+        mapper = {"N": False, "Y": True}
+        for col_name in ACC_LOANS_BOOLEAN_COLUMNS:
+            data[col_name] = (
+                data[col_name]
+                .str.upper()
+                .map(mapper, na_action="ignore")
+                .astype("boolean")
+            )
+    return data
 
 
-def convert_rej_loan_data(loan_data):
+def convert_rej_loan_data(data, conversions=REJ_LOANS_CONVERSIONS):
     """Perform data conversion on selected columns in the table of rejected loans.
 
     Args:
-        loan_data:  Dataframe containing table of rejected loans
+        data:  Dataframe containing table of rejected loans
+        conversions:  Tuple of strings specifying data-conversion steps to execute
 
     Returns:
         Dataframe with converted columns containing the table of rejected loans
     """
-    loan_data["Debt-To-Income Ratio"] = (
-        loan_data["Debt-To-Income Ratio"].str.replace("%", "").astype("Float64")
-    )
-    return loan_data
+    if "percentages" in conversions:
+        data["Debt-To-Income Ratio"] = (
+            data["Debt-To-Income Ratio"].str.replace("%", "").astype("Float64")
+        )
+    return data
 
 
 def _get_iso_date_string(element):
