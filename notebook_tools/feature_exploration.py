@@ -58,6 +58,11 @@ def get_value_counts(ser):
     # The index of counts includes pd.NA (used to report the count of NA). This index
     # element shows up as a blank when counts is displayed. To improve the display,
     # convert this index value to the string 'NA'.
+    #
+    # Rather than modifying the dataframe, a better practice would be to modify the
+    # dataframe's display. But the pandas functionality for modifying the display of
+    # missing values (e.g., the argument na_rep to Styler.format) works only for cell
+    # values and not index values.
     counts.index = counts.index.fillna(value="NA")
     return counts
 
@@ -72,27 +77,11 @@ def style_loan_summary(summary):
     Returns:
         Customized styler object for the summary dataframe
     """
-    styler = (
-        summary.style.set_properties(**{"text-align": "center"})
-        .map_index(lambda _heading: "text-align: center;", axis="rows")
-        .map_index(lambda _heading: "text-align: center;", axis="columns")
-        .format(thousands=",", subset="count")
-    )
+    styler = _set_styler_defaults(summary.style)
     if "description" in summary.columns:
         styler = styler.set_properties(
             subset="description", **{"text-align": "left", "white-space": "normal"}
         )
-    # Set the remaining styles differently for numeric and non-numeric data.
-    if "std" in summary.columns:
-        # In this case, we are summarizing numeric data.
-        styler = styler.format(
-            precision=1,
-            thousands=",",
-            decimal=".",
-            subset=["mean", "std", "min", "25%", "50%", "75%", "max"],
-        )
-    else:
-        styler = styler.format(thousands=",", subset=["unique", "freq"])
     return styler
 
 
@@ -106,10 +95,14 @@ def style_value_counts(counts):
     Returns:
         Customized styler object for the counts dataframe
     """
+    return _set_styler_defaults(counts.style)
+
+
+def _set_styler_defaults(styler):
     return (
-        counts.style.set_properties(**{"text-align": "center"})
-        .map_index(lambda _heading: "text-align: left;", axis="rows")
+        styler.set_properties(**{"text-align": "center"})
+        .map_index(lambda _heading: "text-align: center;", axis="rows")
         .map_index(lambda _heading: "text-align: center;", axis="columns")
         .set_table_styles([{"selector": ".index_name", "props": "text-align: center;"}])
-        .format(thousands=",", subset="count")
+        .format(na_rep="&lt;NA&gt;", precision=1, thousands=",", decimal=".")
     )
