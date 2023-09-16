@@ -7,7 +7,7 @@ from notebook_tools import DATA_DIR
 
 ACC_LOANS_PATH = DATA_DIR / "accepted_2007_to_2018Q4.csv"
 REJ_LOANS_PATH = DATA_DIR / "rejected_2007_to_2018Q4.csv"
-ACC_LOANS_METADATA_PATH = DATA_DIR / "LCDataDictionaryWithDtypes.csv"
+ACC_LOANS_METADATA_PATH = DATA_DIR / "accepted_loans_metadata.csv"
 
 # Names of columns to exclude in loading the data
 ACC_LOANS_EXCLUDED_COLUMNS = ("member_id", "url", "title", "desc", "policy_code")
