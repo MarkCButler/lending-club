@@ -56,6 +56,10 @@ def _perform_query(query, params=None):
     Returns:
         Dataframe corresponding to the query result
     """
+    if DATABASE_ENGINE is None:
+        raise RuntimeError(
+            "Unable to perform database query because the engine is not instantiated."
+        )
     with DATABASE_ENGINE.connect() as con:
         return read_sql_query(query, con, params=params)
 
@@ -94,6 +98,10 @@ def _delete_database():
 
 
 def _add_tables(tables):
+    if DATABASE_ENGINE is None:
+        raise RuntimeError(
+            "Unable to add database tables because the engine is not instantiated."
+        )
     with DATABASE_ENGINE.connect() as con:
         for name, df in tables.items():
             df.to_sql(name, con=con, index=False)

@@ -90,7 +90,9 @@ def load_rej_loan_data():
     Returns:
         Dataframe containing the table of rejected loans
     """
-    return pd.read_csv(REJ_LOANS_PATH, dtype=REJ_LOANS_DTYPES)
+    # The comment to ignore type checking on the next line is needed because the type
+    # hint for the dtype argument of read_csv doesn't match the functionality.
+    return pd.read_csv(REJ_LOANS_PATH, dtype=REJ_LOANS_DTYPES)  # type: ignore
 
 
 def convert_acc_loan_data(data, conversions=ACC_LOANS_CONVERSIONS):
