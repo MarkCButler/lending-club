@@ -55,7 +55,7 @@ def load_acc_loan_data(excluded_cols=ACC_LOANS_EXCLUDED_COLUMNS):
     Returns:
         Dataframe containing the table of accepted loans
     """
-    metadata = _load_acc_loan_metadata()
+    metadata = load_acc_loan_metadata()
     dtypes = metadata["data type"].to_dict()
 
     return pd.read_csv(
@@ -72,11 +72,17 @@ def load_acc_loan_feat_desc():
         Dataframe with index corresponding to feature names for the data on accepted
         loans.  The dataframe contains a single column named 'description'.
     """
-    metadata = _load_acc_loan_metadata()
+    metadata = load_acc_loan_metadata()
     return metadata[["description"]]
 
 
-def _load_acc_loan_metadata():
+def load_acc_loan_metadata():
+    """Load a table o metadata on accepted loans.
+
+    Returns:
+        Dataframe with index 'column name' and columns 'data type', 'category',
+        'known at loan origination', and 'description'.
+    """
     metadata = pd.read_csv(ACC_LOANS_METADATA_PATH)
     return metadata.set_index("column name")
 
