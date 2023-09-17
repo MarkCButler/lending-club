@@ -54,17 +54,7 @@ def get_value_counts(ser):
     Returns:
         Dataframe giving value counts for the series.
     """
-    counts = ser.value_counts(dropna=False).to_frame()
-    # The index of counts includes pd.NA (used to report the count of NA). This index
-    # element shows up as a blank when counts is displayed. To improve the display,
-    # convert this index value to the string 'NA'.
-    #
-    # Rather than modifying the dataframe, a better practice would be to modify the
-    # dataframe's display. But the pandas functionality for modifying the display of
-    # missing values (e.g., the argument na_rep to Styler.format) works only for cell
-    # values and not index values.
-    counts.index = counts.index.fillna(value="NA")
-    return counts
+    return ser.value_counts(dropna=False).to_frame()
 
 
 def style_loan_summary(summary):
@@ -105,4 +95,5 @@ def _set_styler_defaults(styler):
         .map_index(lambda _heading: "text-align: center;", axis="columns")
         .set_table_styles([{"selector": ".index_name", "props": "text-align: center;"}])
         .format(na_rep="&lt;NA&gt;", precision=1, thousands=",", decimal=".")
+        .format_index(na_rep="&lt;NA&gt;", axis="index")
     )
