@@ -10,7 +10,7 @@ Links to these notebooks are labelled below with the Jupyter icon :jupyter-color
     some features that do not render correctly in Firefox. Compatibility with other browsers
     has not been tested.
 
-## Exploratory Data Analysis
+## Data cleaning
 
 The LendingClub [dataset](https://www.kaggle.com/datasets/wordsforthewise/lending-club)
 includes data on accepted and rejected loans from 2007 through 2018 Q2.
@@ -28,10 +28,14 @@ includes data on accepted and rejected loans from 2007 through 2018 Q2.
         poetry run mkdocs gh-deploy --no-history --strict
 -->
 
-### [:jupyter-colored: Define data types, reformat data, and create the database](html/data-cleaning-01.html)
+### [:jupyter-colored: Define data types and reformat data](html/data-cleaning-01.html)
 
 - After preliminary exploration of the data, define a data type for each feature.
 - Convert / reformat some columns to facilitate model development.
 - Create a SQLite database.
 
-### :jupyter-colored: Explore features
+### [:jupyter-colored: Filter columns and rows](html/data-cleaning-02.html)
+
+- Explore features in preparation for filtering.
+- Filter out certain columns and rows from the data on accepted loans.
+- Update the database, including only the filtered data on accepted loans.
