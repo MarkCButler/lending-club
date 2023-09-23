@@ -101,6 +101,23 @@ def load_rej_loan_data():
     return pd.read_csv(REJ_LOANS_PATH, dtype=REJ_LOANS_DTYPES)  # type: ignore
 
 
+def filter_acc_loan_data(data):
+    """Filter rows from the data on accepted loans.
+
+    The filtering reproduces what is done in the ../notebooks/data-cleaning-02.ipynb.
+
+    Args:
+        data:  Dataframe containing table of accepted loans
+
+    Returns:
+        Dataframe with unwanted rows filtered out
+    """
+    bool_index = data["loan_status"].notna() & (
+        ~data["loan_status"].str.startswith("Does not meet")
+    )
+    return data[bool_index]
+
+
 def convert_acc_loan_data(data, conversions=ACC_LOANS_CONVERSIONS):
     """Perform data conversion on selected columns in the table of accepted loans.
 
