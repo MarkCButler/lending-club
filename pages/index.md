@@ -39,3 +39,13 @@ includes data on accepted and rejected loans from 2007 through 2018 Q2.
 - Explore features in preparation for filtering.
 - Filter out certain columns and rows from the data on accepted loans.
 - Update the database, including only the filtered data on accepted loans.
+
+## Feature exploration
+
+### [:jupyter-colored: Classify features](html/feature-classification-01.html)
+
+- Explore features for which the classification is initially unclear.
+- Group all features for accepted loans based on the following:
+    1. Type of information (e.g., information about the borrower or the loan)
+    2. Whether the information is known at loan origination
+- Update the database to include feature classification.
