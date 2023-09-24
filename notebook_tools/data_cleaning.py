@@ -129,12 +129,12 @@ def convert_acc_loan_data(data, conversions=ACC_LOANS_CONVERSIONS):
         Dataframe with converted columns containing the table of accepted loans
     """
     if "time_intervals" in conversions:
-        data["term"] = (
+        data.loc[:, "term"] = (
             data["term"].str.replace("months", "").str.strip().astype("Int64")
         )
     if "dates" in conversions:
         for col_name in ACC_LOANS_DATE_COLUMNS:
-            data[col_name] = (
+            data.loc[:, col_name] = (
                 data[col_name]
                 .map(_get_iso_date_string, na_action="ignore")
                 .astype("string")
@@ -142,7 +142,7 @@ def convert_acc_loan_data(data, conversions=ACC_LOANS_CONVERSIONS):
     if "booleans" in conversions:
         mapper = {"N": False, "Y": True}
         for col_name in ACC_LOANS_BOOLEAN_COLUMNS:
-            data[col_name] = (
+            data.loc[:, col_name] = (
                 data[col_name]
                 .str.upper()
                 .map(mapper, na_action="ignore")
@@ -162,7 +162,7 @@ def convert_rej_loan_data(data, conversions=REJ_LOANS_CONVERSIONS):
         Dataframe with converted columns containing the table of rejected loans
     """
     if "percentages" in conversions:
-        data["Debt-To-Income Ratio"] = (
+        data.loc[:, "Debt-To-Income Ratio"] = (
             data["Debt-To-Income Ratio"].str.replace("%", "").astype("Float64")
         )
     return data
