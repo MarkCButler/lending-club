@@ -38,7 +38,7 @@ venvPath = "."
 venv = ".venv"
 
 [tool.pylint.basic]
-good-names = ["i", "j", "k", "ex", "Run", "_", "df"]
+good-names = ["i", "j", "k", "ex", "Run", "_", "df", "by"]
 
 [tool.pylint."messages control"]
 disable = ["fixme"]
