@@ -112,8 +112,10 @@ def filter_acc_loan_data(data):
     Returns:
         Dataframe with unwanted rows filtered out
     """
-    bool_index = data["loan_status"].notna() & (
-        ~data["loan_status"].str.startswith("Does not meet")
+    bool_index = (
+        data["loan_status"].notna()
+        & (~data["loan_status"].str.startswith("Does not meet"))
+        & (data["issue_d"] >= "2012-01")
     )
     return data[bool_index]
 
