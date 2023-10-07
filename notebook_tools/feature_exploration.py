@@ -16,7 +16,7 @@ def summarize_loan_data(data, include):
     summary = data.describe(include=include).transpose()
     dtypes = data.dtypes.to_frame(name="data type")
     summary = summary.join(dtypes)
-    summary.loc[:, "count"] = summary["count"].astype("int")
+    summary = summary.astype({"count": "int"})
     return summary
 
 
