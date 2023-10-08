@@ -36,9 +36,13 @@ includes data on accepted and rejected loans from 2007 through 2018 Q2.
 
 ### [:jupyter-colored: Filter columns and rows](html/data-cleaning-02.html)
 
-- Explore features in preparation for filtering.
+- Explore features to determine what filtering should be done.
 - Filter out certain columns and rows from the data on accepted loans.
 - Update the database, including only the filtered data on accepted loans.
+
+###  [:jupyter-colored: Display summary of cleaned data](html/data-cleaning-03.html)
+
+- Display descriptive statistics for features in the cleaned data.
 
 ## Feature exploration
 
