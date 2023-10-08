@@ -54,7 +54,13 @@ def get_group_sizes(data, by):
         Dataframe with sorted index containing the groups, and with a single column
         named 'count' that gives the size of each group.
     """
-    return data.groupby(by=by).size().sort_index().to_frame(name="count").reset_index()
+    return (
+        data.groupby(by=by, observed=False)
+        .size()
+        .sort_index()
+        .to_frame(name="count")
+        .reset_index()
+    )
 
 
 def get_value_counts(ser):
