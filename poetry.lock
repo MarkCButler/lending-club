@@ -1423,6 +1423,26 @@ files = [
 jupyter-server = ">=1.1.2"
 
 [[package]]
+name = "jupyter-resource-usage"
+version = "1.0.1"
+description = "Jupyter Extension to show resource usage"
+optional = false
+python-versions = ">=3.8"
+files = [
+    {file = "jupyter_resource_usage-1.0.1-py3-none-any.whl", hash = "sha256:d722ad32fc8bfaff3f81da4f8a2202c5e5258895d546399ff0e5ddf11f56bd8e"},
+    {file = "jupyter_resource_usage-1.0.1.tar.gz", hash = "sha256:ede723ebb63d531615d0da4f8769470c8ee9cc3fa18e6af9a12b70f11972cc61"},
+]
+
+[package.dependencies]
+jupyter-server = ">=2.0"
+prometheus-client = "*"
+psutil = ">=5.6,<6.0"
+pyzmq = ">=19"
+
+[package.extras]
+dev = ["autopep8", "black", "flake8", "mock", "pytest", "pytest-cov (>=2.6.1)"]
+
+[[package]]
 name = "jupyter-server"
 version = "2.7.3"
 description = "The backend—i.e. core services, APIs, and REST endpoints—to Jupyter web applications."
@@ -4237,4 +4257,4 @@ testing = ["big-O", "jaraco.functools", "jaraco.itertools", "more-itertools", "p
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "8134c888633c963c7871a0f9f60c0a5003410b3848e3a51ecec8091f397155cb"
+content-hash = "43570784a6fa75d8238f9e811a1694f9b03f989b074759f1303a202e7de2a187"
