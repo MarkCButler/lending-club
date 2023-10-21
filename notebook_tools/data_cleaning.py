@@ -117,6 +117,11 @@ def filter_acc_loan_data(data):
         & (~data["loan_status"].str.startswith("Does not meet"))
         & (data["issue_d"] >= "2012-01")
     )
+    int_rate_is_anomalous = (data["grade"] != "A") & (data["int_rate"] < 7)
+    int_rate_is_anomalous = int_rate_is_anomalous | (
+        (data["grade"] == "D") & (data["int_rate"] < 9)
+    )
+    bool_index = bool_index & (~int_rate_is_anomalous)
     return data[bool_index]
 
 
