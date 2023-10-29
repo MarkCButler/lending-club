@@ -10,7 +10,16 @@ REJ_LOANS_PATH = DATA_DIR / "rejected_2007_to_2018Q4.csv"
 ACC_LOANS_METADATA_PATH = DATA_DIR / "accepted_loans_metadata.csv"
 
 # Names of columns to exclude in loading the data
-ACC_LOANS_EXCLUDED_COLUMNS = ("member_id", "url", "title", "desc", "policy_code")
+ACC_LOANS_EXCLUDED_COLUMNS = (
+    "member_id",
+    "url",
+    "title",
+    "desc",
+    "policy_code",
+    "hardship_type",
+    "hardship_length",
+    "deferral_term",
+)
 
 # Identifiers for data-conversion steps
 ACC_LOANS_CONVERSIONS = ("time_intervals", "dates", "booleans")
