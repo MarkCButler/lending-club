@@ -32,19 +32,20 @@ includes data on accepted and rejected loans from 2007 through 2018 Q2.
 
 - After preliminary exploration of the data, define a data type for each feature.
 - Convert / reformat some columns to facilitate model development.
-- Create a SQLite database.
 
 ### [:jupyter-colored: Filter columns and rows](html/data-cleaning-02.html)
 
 - Explore features to determine what filtering should be done.
 - Filter out certain columns and rows from the data on accepted loans.
-- Update the database, including only the filtered data on accepted loans.
-
-###  [:jupyter-colored: Display summary of cleaned data](html/data-cleaning-03.html)
-
-- Display descriptive statistics for features in the cleaned data.
 
 ## Feature exploration
+
+###  [:jupyter-colored: Summarize the cleaned data](html/feature-summary-01.html)
+
+Summarize the cleaned data in two ways:
+
+- Tables of descriptive statistics
+- Plots showing the distribution of values for each feature
 
 ### [:jupyter-colored: Classify features](html/feature-classification-01.html)
 
@@ -52,4 +53,8 @@ includes data on accepted and rejected loans from 2007 through 2018 Q2.
 - Group all features for accepted loans based on the following:
     1. Type of information (e.g., information about the borrower or the loan)
     2. Whether the information is known at loan origination
-- Update the database to include feature classification.
+- Create a SQLite database.
+
+### [:jupyter-colored: Explore correlations](html/correlations-01.html)
+
+- Explore correlations involving selected features in the loan data.
