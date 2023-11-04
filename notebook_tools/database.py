@@ -69,7 +69,7 @@ def create_database(tables):
 
     Args:
         tables:  Dictionary of tables to create.  Keys are table names and values are
-            pandas dataframes that are converted to SQLite tables
+            pandas dataframes that are converted to SQLite tables.
     """
     if DATABASE_PATH.exists():
         response = input(
@@ -81,7 +81,7 @@ def create_database(tables):
         else:
             print("\nReturning.\n")
             return
-    _add_tables(tables)
+    add_tables(tables)
 
 
 def _delete_database():
@@ -97,12 +97,21 @@ def _delete_database():
     DATABASE_ENGINE = create_engine(url="sqlite:///" + str(DATABASE_PATH))
 
 
-def _add_tables(tables):
+def add_tables(tables, **kwargs):
+    """Add tables to the database.
+
+    Args:
+        tables:  Dictionary of tables to create.  Keys are table names and values are
+            pandas dataframes that are converted to SQLite tables
+        kwargs:  Keyword arguments that are passed to pandas.DataFrame.to_sql.  Note
+            that add_tables passes index=False to to_sql, so 'index' should not be used
+            as one of the keyword arguments.
+    """
     if DATABASE_ENGINE is None:
         raise RuntimeError(
             "Unable to add database tables because the engine is not instantiated."
         )
     with DATABASE_ENGINE.connect() as con:
         for name, df in tables.items():
-            df.to_sql(name, con=con, index=False)
+            df.to_sql(name, con=con, index=False, **kwargs)
         con.commit()
