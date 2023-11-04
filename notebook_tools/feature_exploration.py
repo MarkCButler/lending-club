@@ -42,22 +42,21 @@ def summarize_acc_loans(data, include, feature_descriptions):
     return summary.join(feature_descriptions["description"])
 
 
-def get_group_sizes(data, by):
+def get_group_sizes(data, group_by):
     """Group data and return a dataframe of group sizes.
 
     Args:
         data:  Dataframe on which a groupby operation will be performed
-        by:  Used to determine the groups.  This argument is passed as the 'by' argument
-            to data.groupby.
+        group_by:  Used to determine the groups.  This argument is passed as the 'by'
+            argument to data.groupby.
 
     Returns:
         Dataframe with sorted index containing the groups, and with a single column
         named 'count' that gives the size of each group.
     """
     return (
-        data.groupby(by=by, observed=False)
+        data.groupby(by=group_by, observed=False)
         .size()
-        .sort_index()
         .to_frame(name="count")
         .reset_index()
     )
