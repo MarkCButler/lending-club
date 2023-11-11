@@ -17,37 +17,37 @@ includes data on accepted and rejected loans from 2007 through 2018 Q2.
 
 <!--
     In this document, relative links to html files such as
-        html/data-cleaning-01.html
-    point to Jupyter notebooks that have been converted to html.  The html directory
-    containing these converted notebooks is ignored by git in the main branch (due
-    to the .gitignore file).  However, this directory is not ignored by the static
-    site generator mkdocs-material.  The site published to branch gh-pages therefore
-    includes the html directory.
+        converted_notebooks/data-cleaning-01.html
+    point to Jupyter notebooks that have been converted to html.  The converted_notebooks
+    directory containing these converted notebooks is ignored by git in the main branch (due
+    to the .gitignore file).  However, this directory is not ignored by the static site
+    generator mkdocs-material.  The site published to branch gh-pages therefore includes the
+    converted_notebooks directory.
 
     Note that the command to publish the repo's site is
         poetry run mkdocs gh-deploy --no-history --strict
 -->
 
-### [:jupyter-colored: Define data types and reformat data](html/data-cleaning-01.html)
+### [:jupyter-colored: Define data types and reformat data](converted_notebooks/data-cleaning-01.html)
 
 - After preliminary exploration of the data, define a data type for each feature.
 - Convert / reformat some columns to facilitate model development.
 
-### [:jupyter-colored: Filter columns and rows](html/data-cleaning-02.html)
+### [:jupyter-colored: Filter columns and rows](converted_notebooks/data-cleaning-02.html)
 
 - Explore features to determine what filtering should be done.
 - Filter out certain columns and rows from the data on accepted loans.
 
 ## Feature exploration
 
-###  [:jupyter-colored: Summarize the cleaned data](html/feature-summary-01.html)
+###  [:jupyter-colored: Summarize the cleaned data](converted_notebooks/feature-summary-01.html)
 
 Summarize the cleaned data in two ways:
 
 - Tables of descriptive statistics
 - Plots showing the distribution of values for each feature
 
-### [:jupyter-colored: Classify features](html/feature-classification-01.html)
+### [:jupyter-colored: Classify features](converted_notebooks/feature-classification-01.html)
 
 - Explore features for which the classification is initially unclear.
 - Group all features for accepted loans based on the following:
@@ -55,6 +55,6 @@ Summarize the cleaned data in two ways:
     2. Whether the information is known at loan origination
 - Create a SQLite database.
 
-### [:jupyter-colored: Explore correlations](html/correlations-01.html)
+### [:jupyter-colored: Explore correlations](converted_notebooks/correlations-01.html)
 
 - Explore correlations involving selected features in the loan data.
