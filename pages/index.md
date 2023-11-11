@@ -58,3 +58,19 @@ Summarize the cleaned data in two ways:
 ### [:jupyter-colored: Explore correlations](converted_notebooks/correlations-01.html)
 
 - Explore correlations involving selected features in the loan data.
+
+## Analysis
+
+###  [:jupyter-colored: Analysis of interest rate](converted_notebooks/analysis-01.html)
+
+- Introduce [data collected by the Federal Reserve](https://fred.stlouisfed.org/series/TERMCBPER24NS)
+  on historical interest rates for 24-month personal loans.
+
+    The historical data is used to normalize LendingClub interest rates, giving
+    information about how LendingClub rates changed independently of the changes
+    occurring in the broader economy.
+
+- Analyze the correlation of the interest rates for LendingClub loans with the following:
+    1. Loan grade and sub-grade
+    2. Loan term
+    3. Loan date
