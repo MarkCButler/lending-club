@@ -31,12 +31,7 @@ pre-commit = "^3.3.3"
 nbstripout = "^0.6.1"
 mlflow = "^2.5.0"
 pydocstyle = {extras = ["toml"], version = "^6.3.0"}
-pyright = "^1.1.327"
 jupyter-resource-usage = "^1.0.1"
-
-[tool.pyright]
-venvPath = "."
-venv = ".venv"
 
 [tool.pylint.basic]
 good-names = ["i", "j", "k", "ex", "Run", "_", "df", "by"]

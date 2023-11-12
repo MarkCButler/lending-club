@@ -120,9 +120,7 @@ def load_rej_loan_data():
     Returns:
         Dataframe containing the table of rejected loans
     """
-    # The comment to ignore type checking on the next line is needed because the type
-    # hint for the dtype argument of read_csv doesn't match the functionality.
-    return pd.read_csv(REJ_LOANS_PATH, dtype=REJ_LOANS_DTYPES)  # type: ignore
+    return pd.read_csv(REJ_LOANS_PATH, dtype=REJ_LOANS_DTYPES)
 
 
 def filter_acc_loan_data(data):
