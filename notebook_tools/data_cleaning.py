@@ -85,15 +85,30 @@ def load_acc_loan_feat_desc():
     return metadata[["description"]]
 
 
-def load_acc_loan_metadata():
+def load_acc_loan_metadata(cleaned_data=None):
     """Load a table o metadata on accepted loans.
+
+    If the optional argument cleaned_data is passed, the table of metadata is updated to
+    take account of data-cleaning operations that have been performed:
+        - Features that have been removed from the cleaned data are also removed from
+            the table of metadata.
+        - Data types in the table of metadata are updated to match those in the cleaned
+            data.
+
+    Args:
+        cleaned_data:  Dataframe of cleaned data on accepted loans.
 
     Returns:
         Dataframe with index 'column name' and columns 'data type', 'category',
         'known at loan origination', and 'description'.
     """
-    metadata = pd.read_csv(ACC_LOANS_METADATA_PATH)
-    return metadata.set_index("column name")
+    metadata = pd.read_csv(ACC_LOANS_METADATA_PATH).set_index("column name")
+    if cleaned_data is not None:
+        metadata = metadata[metadata.index.isin(cleaned_data.columns)]
+        metadata.loc[:, "data type"] = cleaned_data.dtypes.astype(str).reindex_like(
+            metadata
+        )
+    return metadata
 
 
 def load_rej_loan_data():
