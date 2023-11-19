@@ -57,7 +57,12 @@ Summarize the cleaned data in two ways:
 
 ### [:jupyter-colored: Explore correlations](converted_notebooks/correlations-01.html)
 
-- Explore correlations involving selected features in the loan data.
+- Explore correlations involving selected features in the loan data:
+    1. Loan year
+    2. Loan grade and sub-grade
+    3. Loan purpose
+    4. Loan amount
+    5. Loan term
 
 ## Analysis
 
