@@ -57,12 +57,8 @@ Summarize the cleaned data in two ways:
 
 ### [:jupyter-colored: Explore correlations](converted_notebooks/correlations-01.html)
 
-- Explore correlations involving selected features in the loan data:
-    1. Loan year
-    2. Loan grade and sub-grade
-    3. Loan purpose
-    4. Loan amount
-    5. Loan term
+- Explore correlations involving selected features in the loan data: year, grade,
+  sub-grade, purpose, amount, and term.
 
 ## Analysis
 
@@ -75,7 +71,5 @@ Summarize the cleaned data in two ways:
     information about how LendingClub rates changed independently of the changes
     occurring in the broader economy.
 
-- Analyze the correlation of the interest rates for LendingClub loans with the following:
-    1. Loan grade and sub-grade
-    2. Loan term
-    3. Loan date
+- Analyze the correlation of the interest rates for LendingClub loans with loan grade,
+  sub-grade, term, and date of issuance.
