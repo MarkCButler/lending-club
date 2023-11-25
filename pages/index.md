@@ -73,3 +73,18 @@ Summarize the cleaned data in two ways:
 
 - Analyze the correlation of the interest rates for LendingClub loans with loan grade,
   sub-grade, term, and date of issuance.
+
+###  [:jupyter-colored: Analysis of loan outcome](converted_notebooks/analysis-02.html)
+
+- Derive a method of estimating each loan's annualized yield using the loan profit and
+  loan duration.
+
+    Simplifying approximations are used to estimate the lender's [internal rate of
+    return](https://en.wikipedia.org/wiki/Internal_rate_of_return) without the need to 
+    run a numerical solver for each of the 2.2 million loans in the dataset.
+
+- Analyze the following dimensions of loan outcome:
+    - Failure rate (percentage of loans in default or charged off)
+    - Loan duration
+    - Profit / loss
+    - Annualized yield
