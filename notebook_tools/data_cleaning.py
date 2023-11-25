@@ -156,14 +156,16 @@ def convert_acc_loan_data(data, conversions=ACC_LOANS_CONVERSIONS):
 
     Returns:
         Dataframe with converted columns containing the table of accepted loans
+
+    Note that this function mutates the input argument 'data'.
     """
     if "time_intervals" in conversions:
-        data.loc[:, "term"] = (
+        data["term"] = (
             data["term"].str.replace("months", "").str.strip().astype("Int64")
         )
     if "dates" in conversions:
         for col_name in ACC_LOANS_DATE_COLUMNS:
-            data.loc[:, col_name] = (
+            data[col_name] = (
                 data[col_name]
                 .map(_get_iso_date_string, na_action="ignore")
                 .astype("string")
@@ -171,7 +173,7 @@ def convert_acc_loan_data(data, conversions=ACC_LOANS_CONVERSIONS):
     if "booleans" in conversions:
         mapper = {"N": False, "Y": True}
         for col_name in ACC_LOANS_BOOLEAN_COLUMNS:
-            data.loc[:, col_name] = (
+            data[col_name] = (
                 data[col_name]
                 .str.upper()
                 .map(mapper, na_action="ignore")
@@ -189,22 +191,27 @@ def convert_rej_loan_data(data, conversions=REJ_LOANS_CONVERSIONS):
 
     Returns:
         Dataframe with converted columns containing the table of rejected loans
+
+    Note that this function mutates the input argument 'data'.
     """
     if "percentages" in conversions:
-        data.loc[:, "Debt-To-Income Ratio"] = (
+        data["Debt-To-Income Ratio"] = (
             data["Debt-To-Income Ratio"].str.replace("%", "").astype("Float64")
         )
     return data
 
 
 def _get_iso_date_string(element):
-    """Convert a date string to ISO format.
+    """Convert a date string representing a year-month combination to ISO format.
 
     For example, 'Jun-2015' is converted to '2015-06'.
 
     Args:
-        element:  String containing a date in the format used in the raw data, e.g.,
-            Jun-2015.
+        element:  String containing a year-month combination in the format used in the
+            raw data, e.g., Jun-2015
+
+    Returns:
+        String containing a year-month combination in ISO format, e.g., 2015-06
     """
     iso_month_labels = define_month_conversions()
     month, year = element.lower().split("-")
