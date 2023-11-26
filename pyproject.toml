@@ -34,7 +34,7 @@ pydocstyle = {extras = ["toml"], version = "^6.3.0"}
 jupyter-resource-usage = "^1.0.1"
 
 [tool.pylint.basic]
-good-names = ["i", "j", "k", "ex", "Run", "_", "df", "by"]
+good-names = ["i", "j", "k", "r", "x", "N", "ex", "Run", "_", "df"]
 
 [tool.pylint."messages control"]
 disable = ["fixme"]
