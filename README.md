@@ -1,5 +1,7 @@
 # lending-club
 
+\[Work in progress, currently far from complete\]
+
 Analysis and machine learning models of a
 [dataset](https://www.kaggle.com/datasets/wordsforthewise/lending-club) from LendingClub
 
